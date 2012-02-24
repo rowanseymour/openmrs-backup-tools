@@ -1,0 +1,9 @@
+OpenMRS Backup Tools
+=============================================================
+
+So far this is just a bash script to do database dumps
+
+* Reads database connection details from OpenMRS runtime properties
+* Dumps database as daily, weekly or monthly
+* Configurable expiration times for daily, weekly or monthly dumps
+* Records everything to /var/log/syslog
