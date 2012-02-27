@@ -62,9 +62,9 @@ fi
 dayofmonth=`date +%d` # 1-31
 dayofweek=`date +%u` # 1-7 (Monday-Sunday)
 
-if [ dayofmonth = "1" ]; then
+if [ $dayofmonth == "1" ]; then
 	dumpfilename="`date '+%Y-%m-%d'`-openmrsdb-monthly.gz"
-elif [ dayofweek = "1" ]; then
+elif [ $dayofweek == "1" ]; then
 	dumpfilename="`date '+%Y-%m-%d'`-openmrsdb-weekly.gz"
 else
 	dumpfilename="`date '+%Y-%m-%d'`-openmrsdb-daily.gz"
