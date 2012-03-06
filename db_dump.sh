@@ -3,9 +3,10 @@
 #
 # Dumps a database. 
 #
-# Usage db_dump <dbname> <dbuser> <dbpassword> <dumpdir>
+# Usage: db_dump <dbname> <dbuser> <dbpassword> <dumpdir>
 #
 
+# Gather script arguments
 dbname=$1
 dbuser=$2
 dbpass=$3
