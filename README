@@ -14,7 +14,7 @@ Setup:
     * Your OpenMRS runtime properties file
     * The destination directory for backups
 
-2. Add this cron job by running "crontab -e":
+2. Add cron job to execute openmrs_backup.sh by running "crontab -e". E.g.
 
 # m h  dom mon dow   command
 00 00 * * * ~/openmrs_backup.sh
