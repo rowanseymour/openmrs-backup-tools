@@ -1,26 +1,7 @@
 #!/bin/bash
 
-#################### Config #####################
-
-# The OpenMRS runtime properties file
-OPENMRS_PROP_FILE="/usr/share/tomcat6/.OpenMRS/openmrs-runtime.properties"
-
-# Destination directory for backups
-BACKUP_DEST_DIR="/home/emr-admin/openmrs_backups"
-
-# Number of days to keep daily dumps before deletion (0 = never delete)
-DAILY_KEEP_DAYS=14
-
-# Number of weeks to keep weekly dumps before deletion (0 = never delete)
-WEEKLY_KEEP_WEEKS=6
-
-# Number of months to keep monthly dumps before deletion (0 = never delete)
-MONTHLY_KEEP_MONTHS=12
-
-# Logging tag
-LOGGING_TAG="OPENMRS-BACKUP"
-
-#################### Functions #####################
+# Load configuration values
+. ~/openmrs_backup.conf
 
 # Fail function to record error in syslog
 fail() {
@@ -28,8 +9,6 @@ fail() {
 	echo $1
 	exit
 }
-
-#################### Main #####################
 
 # Check runtime properties file exists
 if ! [ -e "$OPENMRS_PROP_FILE" ]; then
