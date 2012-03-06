@@ -59,10 +59,10 @@ if ! [ -d "$BACKUP_DEST_DIR" ] || ! [ -w "$BACKUP_DEST_DIR" ]; then
 fi
 
 # Determine whether this is daily/weekly/monthly based on current date
-dayofmonth=`date +%d` # 1-31
+dayofmonth=`date +%d` # 01-31
 dayofweek=`date +%u` # 1-7 (Monday-Sunday)
 
-if [ $dayofmonth == "1" ]; then
+if [ $dayofmonth == "01" ]; then
 	dumpfilename="`date '+%Y-%m-%d'`-openmrsdb-monthly.gz"
 elif [ $dayofweek == "1" ]; then
 	dumpfilename="`date '+%Y-%m-%d'`-openmrsdb-weekly.gz"
