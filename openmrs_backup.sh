@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Get script directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Load configuration values
-. ./backup.conf
+. $DIR/backup.conf
 
 # Fail function to record error in syslog
 fail() {
@@ -33,7 +36,7 @@ else
 fi
 
 # Dump the database
-./db_dump.sh $dbname $dbuser $dbpass $BACKUP_DEST_DIR
+$DIR/db_dump.sh $dbname $dbuser $dbpass $BACKUP_DEST_DIR
 
 # Check dump was successful
 if [ $? -eq 0 ]; then
@@ -43,4 +46,4 @@ else
 fi
 
 # Cleanup old dumps
-./rotate.sh $DAILY_KEEP_DAYS $WEEKLY_KEEP_WEEKS $MONTHLY_KEEP_MONTHS $BACKUP_DEST_DIR
+$DIR/rotate.sh $DAILY_KEEP_DAYS $WEEKLY_KEEP_WEEKS $MONTHLY_KEEP_MONTHS $BACKUP_DEST_DIR
