@@ -1,10 +1,17 @@
 #!/bin/bash
 
 # Get script directory
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_PATH="${BASH_SOURCE[0]}";
+if ([ -h "${SCRIPT_PATH}" ]) then
+  while([ -h "${SCRIPT_PATH}" ]) do SCRIPT_PATH=`readlink "${SCRIPT_PATH}"`; done
+fi
+pushd . > /dev/null
+cd `dirname ${SCRIPT_PATH}` > /dev/null
+SCRIPT_PATH=`pwd`;
+popd  > /dev/null
 
 # Load configuration values
-. $DIR/backup.conf
+. $SCRIPT_PATH/backup.conf
 
 # Fail function to record error in syslog
 fail() {
@@ -36,7 +43,7 @@ else
 fi
 
 # Dump the database
-$DIR/db_dump.sh $dbname $dbuser $dbpass $BACKUP_DEST_DIR
+$SCRIPT_PATH/db_dump.sh $dbname $dbuser $dbpass $BACKUP_DEST_DIR
 
 # Check dump was successful
 if [ $? -eq 0 ]; then
@@ -46,4 +53,4 @@ else
 fi
 
 # Cleanup old dumps
-$DIR/rotate.sh $DAILY_KEEP_DAYS $WEEKLY_KEEP_WEEKS $MONTHLY_KEEP_MONTHS $BACKUP_DEST_DIR
+$SCRIPT_PATH/rotate.sh $DAILY_KEEP_DAYS $WEEKLY_KEEP_WEEKS $MONTHLY_KEEP_MONTHS $BACKUP_DEST_DIR

@@ -7,6 +7,10 @@ This is a little collection of bash scripts which can:
 * Dump database as daily, weekly or monthly
 * Expire daily, weekly or monthly dumps
 * Record everything to /var/log/syslog
+* Sync to a USB device
+
+Requires:
+* pmount, usbmount (for USB syncing)
 
 Setup:
 
@@ -14,7 +18,7 @@ Setup:
     * Your OpenMRS runtime properties file
     * The destination directory for backups
 
-2. Add cron job to execute openmrs_backup.sh by running "crontab -e". E.g.
+2. Add cron job to execute openmrs_backup.sh by running "sudo crontab -e". E.g.
 
 # m h  dom mon dow   command
-00 00 * * * ~/openmrs_backup.sh
+@midnight ~/openmrs_backup.sh
